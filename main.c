@@ -15,6 +15,7 @@
 
 void main(void) 
 {
+    signed char cont = 0;
     char estado = 0;
      d7seg.init();
      botoes_init();
@@ -29,27 +30,35 @@ void main(void)
              
         
             case 1:
-                if (adicionar() == 1 );
-                    estado = 2;
+                if (adicionar() == 1 )
+                    estado = 3;
+                if (subtrair() == 1)
+                    estado = 4;               
                     break;
              
             case 2:
-               if (adicionar() == 0 );
-               estado = 3;
+               if (adicionar() == 0 && subtrair() ==0)
+                   estado = 0;
+                   break;
+                
+            case 3:
+                if ( cont < 9 )
+                    ++cont;
+                else                    
+                    cont = 0;
+                estado = 2;
                 break;
                 
-            case 3: 
-                ++cont;
-                estado = 0;
-                break;        
-                       
+            case 4:
+                if ( cont > 0)
+                    --cont;
+                else
+                    cont = 9;
+                estado = 2;
+                break;
+                                                          
         }
-        d7seg.print(cont);
-        
-        if( cont >= 10)
-            cont = 0;
-        if( cont < 0)
-            cont = 9;
-                      
+               
+               d7seg.print(cont);
     }
 }

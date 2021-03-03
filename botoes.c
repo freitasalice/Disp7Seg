@@ -7,7 +7,7 @@
 
 
 #include <xc.h>
-#define  adc      PORTDbits.RD2
+#define  adc     PORTDbits.RD2
 #define  sub     PORTDbits.RD3 
 
 void botoes_init (void) 
